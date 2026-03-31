@@ -25,45 +25,45 @@ Route::post('/booking-submit', [PageController::class, 'BookingSubmit'])->name('
 
 // Admin Before login Routes
 Route::prefix('admin')->middleware('beforeLoginAdmin')->group(function () {
-    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('admin.login');
-    Route::post('/login', [LoginController::class, 'login'])->name('admin.login.submit');
+    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('Admin.login');
+    Route::post('/login', [LoginController::class, 'login'])->name('Admin.login.submit');
 });
 
 // Admin After login Routes
 Route::prefix('admin')->middleware('admin')->group(function () {
-    Route::get('/dashboard', [DashBoardController::class, 'index'])->name('admin.dashboard');
-    Route::get('/logout', [DashBoardController::class, 'AdminLogout'])->name('admin.logout');
+    Route::get('/dashboard', [DashBoardController::class, 'index'])->name('Admin.dashboard');
+    Route::get('/logout', [DashBoardController::class, 'AdminLogout'])->name('Admin.logout');
 
     Route::prefix('cabs')->group(function () {
-        Route::get('/', [CabsController::class, 'index'])->name('admin.cabs.index');
-        Route::get('/add', [CabsController::class, 'addCab'])->name('admin.cabs.add');
-        Route::post('/store', [CabsController::class, 'storeCab'])->name('admin.cabs.store');
-        Route::get('/edit/{id}', [CabsController::class, 'editCab'])->name('admin.cabs.edit');
-        Route::post('/update/{id}', [CabsController::class, 'updateCab'])->name('admin.cabs.update');
-        Route::get('/delete/{id}', [CabsController::class, 'deleteCab'])->name('admin.cabs.delete'); 
-        Route::get('/status/{id}', [CabsController::class, 'statusCab'])->name('admin.cabs.status');   
+        Route::get('/', [CabsController::class, 'index'])->name('Admin.cabs.index');
+        Route::get('/add', [CabsController::class, 'addCab'])->name('Admin.cabs.add');
+        Route::post('/store', [CabsController::class, 'storeCab'])->name('Admin.cabs.store');
+        Route::get('/edit/{id}', [CabsController::class, 'editCab'])->name('Admin.cabs.edit');
+        Route::post('/update/{id}', [CabsController::class, 'updateCab'])->name('Admin.cabs.update');
+        Route::get('/delete/{id}', [CabsController::class, 'deleteCab'])->name('Admin.cabs.delete'); 
+        Route::get('/status/{id}', [CabsController::class, 'statusCab'])->name('Admin.cabs.status');   
     });
 
     Route::prefix('service')->group(function () {
-        Route::get('/', [ServiceController::class, 'index'])->name('admin.service.index');
-        Route::get('/add', [ServiceController::class, 'addService'])->name('admin.service.add');
-        Route::post('/store', [ServiceController::class, 'storeService'])->name('admin.service.store');
-        Route::get('/edit/{id}', [ServiceController::class, 'editService'])->name('admin.service.edit');
-        Route::post('/update/{id}', [ServiceController::class, 'updateService'])->name('admin.service.update');
-        Route::get('/delete/{id}', [ServiceController::class, 'deleteService'])->name('admin.service.delete'); 
-        Route::get('/status/{id}', [ServiceController::class, 'statusService'])->name('admin.service.status');   
+        Route::get('/', [ServiceController::class, 'index'])->name('Admin.service.index');
+        Route::get('/add', [ServiceController::class, 'addService'])->name('Admin.service.add');
+        Route::post('/store', [ServiceController::class, 'storeService'])->name('Admin.service.store');
+        Route::get('/edit/{id}', [ServiceController::class, 'editService'])->name('Admin.service.edit');
+        Route::post('/update/{id}', [ServiceController::class, 'updateService'])->name('Admin.service.update');
+        Route::get('/delete/{id}', [ServiceController::class, 'deleteService'])->name('Admin.service.delete'); 
+        Route::get('/status/{id}', [ServiceController::class, 'statusService'])->name('Admin.service.status');   
     });
 
     Route::prefix('gallery')->group(function () {
-        Route::get('/', [GalleryController::class, 'index'])->name('admin.gallery.index');
-        Route::post('/store', [GalleryController::class, 'storeGallery'])->name('admin.gallery.store');
-        Route::get('/delete/{id}', [GalleryController::class, 'deleteGallery'])->name('admin.gallery.delete'); 
-        Route::get('/status/{id}', [GalleryController::class, 'statusGallery'])->name('admin.gallery.status');   
+        Route::get('/', [GalleryController::class, 'index'])->name('Admin.gallery.index');
+        Route::post('/store', [GalleryController::class, 'storeGallery'])->name('Admin.gallery.store');
+        Route::get('/delete/{id}', [GalleryController::class, 'deleteGallery'])->name('Admin.gallery.delete'); 
+        Route::get('/status/{id}', [GalleryController::class, 'statusGallery'])->name('Admin.gallery.status');   
     });
 
     Route::prefix('settings')->group(function () {
-        Route::get('/', [SettingsController::class, 'index'])->name('admin.settings');
-        Route::post('/store', [SettingsController::class, 'storeSettings'])->name('admin.settings.store');
+        Route::get('/', [SettingsController::class, 'index'])->name('Admin.settings');
+        Route::post('/store', [SettingsController::class, 'storeSettings'])->name('Admin.settings.store');
     });
-    Route::get('booking-enquiry', [BookingController::class, 'index'])->name('admin.booking.index');
+    Route::get('booking-enquiry', [BookingController::class, 'index'])->name('Admin.booking.index');
 });

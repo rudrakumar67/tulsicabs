@@ -10,6 +10,6 @@ class BookingController extends Controller
 {
     public function index() {
         $bookings = BookingEnquiry::orderBy('id', 'desc')->paginate(10);
-        return view('admin.bookings.index', compact('bookings'));
+        return view('Admin.Bookings.Index', compact('bookings'));
     }
 }

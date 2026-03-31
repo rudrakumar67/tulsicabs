@@ -9,7 +9,7 @@ use Auth;
 class DashBoardController extends Controller
 {
     public function index() {
-        return view('admin.dashboard');
+        return view('Admin.Dashboard');
     }
 
     public function AdminLogout() {
