@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('Layouts.Admin')
 @section('title', 'Booking Enquiry')
 @section('content')
     <div class="card bg-light mb-3">

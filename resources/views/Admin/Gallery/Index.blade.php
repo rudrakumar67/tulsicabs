@@ -1,4 +1,4 @@
-@extends('Layouts.admin')
+@extends('Layouts.Admin')
 @section('title','Gallery')
 @section('content')
 <div class="container-fluid">
