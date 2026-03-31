@@ -11,13 +11,17 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         />
+        <meta name="description" content="{{ $settings->description }}">
+        <link rel="icon" href="{{ asset('Uploads/images/logos/' . $settings->favicon) }}">
     </head>
     <body class="bg-gray-50">
         <header class="bg-white shadow-md">
             <div
                 class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
             >
-                <h1 class="text-2xl font-bold text-yellow-500">Tulsi Cabs</h1>
+                <a href="{{ route('home') }}" class="text-2xl font-bold text-yellow-500">
+                    <img src="{{ asset('Uploads/images/logos/' . $settings->logo) }}" alt="{{ $settings->site_name }}" style="width:150px; height:auto;">
+                </a>
 
                 <!-- Desktop Menu -->
                 <nav class="hidden md:flex space-x-8 font-medium">
@@ -127,14 +131,12 @@
             <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
                 <div>
                     <h3 class="text-xl font-bold text-white mb-4">
-                        Tulsi Cabs
+                        {{ $settings->site_name }}
                     </h3>
                     <p>
-                        Reliable taxi service in Jamnagar for airport, local and
-                        outstation travel. Book safe and affordable rides with us.
+                        {{ $settings->site_description }}
                     </p>
                 </div>
-
                 <div>
                     <h4 class="font-semibold text-white mb-4">Quick Links</h4>
                     <ul class="space-y-2 list-disc list-inside">
@@ -147,20 +149,20 @@
 
                 <div>
                     <h4 class="font-semibold text-white mb-4">Contact</h4>
-                    <p><i class="fas fa-map-marker-alt"></i> Jamnagar, Gujarat</p>
-                    <p><i class="fas fa-phone"></i> 9876543210</p>
-                    <p><i class="fas fa-envelope"></i> info@tulsicabs.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> {{ $settings->address }}</p>
+                    <p><i class="fas fa-phone"></i> {{ $settings->phone_number }}</p>
+                    <p><i class="fas fa-envelope"></i> {{ $settings->email }}</p>
                     <div class="flex space-x-4 mt-4">
-                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-facebook fa-lg"></i></a>
-                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-twitter fa-lg"></i></a>
-                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="{{ $settings->facebook }}" class="text-gray-300 hover:text-white" target="_blank"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="{{ $settings->instagram }}" class="text-gray-300 hover:text-white" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="{{ $settings->whatsapp }}" class="text-gray-300 hover:text-white" target="_blank"><i class="fab fa-whatsapp fa-lg"></i></a>
 
                     </div>
                 </div>
             </div>
 
             <div class="text-center text-gray-500 mt-10">
-                &copy; {{ date('Y') }} Tulsi Cabs. All rights reserved.
+                &copy; {{ date('Y') }} {{ $settings->site_name }}. All rights reserved.
             </div>
         </footer>
 

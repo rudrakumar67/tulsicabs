@@ -3,17 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Gallery;
+use App\Models\Services;
+use App\Models\Cabs;
+use App\Models\BookingEnquiry;
 
 class PageController extends Controller
 {
     public function Home() {
-        return view('home');
+        $galleries = Gallery::where('status', 1)->get();
+        $services = Services::where('status', 1)->get();
+        $cabs = Cabs::where('status', 1)->get();
+        return view('home', compact('galleries', 'services', 'cabs'));
     }
     public function Cabs() {
-        return view('cabs');
+        $cabs = Cabs::where('status', 1)->get();
+        return view('cabs', compact('cabs'));
     }
     public function Services() {
-        return view('services');
+        $services = Services::where('status', 1)->get();
+        return view('services', compact('services'));
     }
     public function About() {
         return view('about');
@@ -22,24 +31,32 @@ class PageController extends Controller
         return view('contact');
     }
     public function Booking() {
-        return view('booking');
+        $services = Services::where('status', 1)->get();
+        $cabs = Cabs::where('status', 1)->get();
+        return view('booking', compact('services', 'cabs'));
     }
     public function BookingSubmit(Request $request) {
-        // Validate and process the booking data here
-        $validatedData = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'phone' => 'required|string|max:20',
+            'phone' => 'required|numeric|min:10|max:10',
             'pickup_location' => 'required|string|max:255',
             'dropoff_location' => 'required|string|max:255',
+            'service' => 'required|string|max:255',
+            'cab' => 'required|string|max:255',
             'date' => 'required|date',
-            'time' => 'required|date_format:H:i',
         ]);
 
-        // Process the booking data (e.g., save to database, send email, etc.)
-        // ...
+        $booking = new BookingEnquiry();
+        $booking->name = $request->name;
+        $booking->phone = $request->phone;
+        $booking->pickup_location = $request->pickup_location;
+        $booking->dropoff_location = $request->dropoff_location;
+        $booking->service = $request->service;
+        $booking->cab = $request->cab;
+        $booking->date = $request->date;
+        $booking->save();
 
-        return redirect()->route('home')->with('success', 'Booking submitted successfully!');
+        return redirect()->back()->with('success', 'Booking submitted successfully!');
     }
 
 }

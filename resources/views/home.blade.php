@@ -17,13 +17,13 @@
 
             <div class="flex gap-4">
                 <a
-                    href="booking.html"
+                    href="{{ route('booking') }}"
                     class="bg-black text-white px-6 py-3 rounded-lg"
                 >
                     Book Taxi
                 </a>
 
-                <a href="#" class="border border-black px-6 py-3 rounded-lg">
+                <a href="tel:{{ $settings->phone_number }}" class="border border-black px-6 py-3 rounded-lg">
                     Call Now
                 </a>
             </div>
@@ -32,34 +32,7 @@
         <!-- Booking Card -->
 
         <div class="bg-white p-8 rounded-xl shadow-xl">
-            <h3 class="text-xl font-bold mb-6">Quick Booking</h3>
-
-            <form class="space-y-4">
-                <input
-                    type="text"
-                    placeholder="Pickup Location"
-                    class="w-full border p-3 rounded"
-                />
-
-                <input
-                    type="text"
-                    placeholder="Drop Location"
-                    class="w-full border p-3 rounded"
-                />
-
-                <select class="w-full border p-3 rounded">
-                    <option>Select Service</option>
-                    <option>One Way Taxi</option>
-                    <option>Airport Taxi</option>
-                    <option>Outstation Taxi</option>
-                    <option>Hourly Taxi</option>
-                </select>
-                <button
-                    class="bg-yellow-500 w-full py-3 rounded text-white font-semibold"
-                >
-                    Enquire Now
-                </button>
-            </form>
+            <img src="{{ asset('banner.jpeg') }}" alt="{{ $settings->site_name }}" style="width:100%; height:auto;">
         </div>
     </div>
 </section>
@@ -69,51 +42,14 @@
         <h2 class="text-3xl font-bold text-center mb-14">Our Taxi Services</h2>
 
         <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8">
-            <div
-                class="bg-white p-6 rounded-xl shadow hover:shadow-lg text-center"
-            >
-                <i class="fa-solid fa-road text-3xl text-yellow-500 mb-4"></i>
-                <h3 class="font-semibold">One Way Taxi</h3>
-            </div>
-
-            <div class="bg-white p-6 rounded-xl shadow text-center">
-                <i class="fa-solid fa-plane text-3xl text-yellow-500 mb-4"></i>
-                <h3>Airport Taxi</h3>
-            </div>
-
-            <div class="bg-white p-6 rounded-xl shadow text-center">
-                <i class="fa-solid fa-route text-3xl text-yellow-500 mb-4"></i>
-                <h3>Outstation Taxi</h3>
-            </div>
-
-            <div class="bg-white p-6 rounded-xl shadow text-center">
-                <i class="fa-solid fa-clock text-3xl text-yellow-500 mb-4"></i>
-                <h3>Hourly Taxi</h3>
-            </div>
-
-            <div class="bg-white p-6 rounded-xl shadow text-center">
-                <i class="fa-solid fa-car text-3xl text-yellow-500 mb-4"></i>
-                <h3>Rental Taxi</h3>
-            </div>
-
-            <div class="bg-white p-6 rounded-xl shadow text-center">
-                <i class="fa-solid fa-ring text-3xl text-yellow-500 mb-4"></i>
-                <h3>Marriage Taxi</h3>
-            </div>
-
-            <div class="bg-white p-6 rounded-xl shadow text-center">
-                <i
-                    class="fa-solid fa-mountain-sun text-3xl text-yellow-500 mb-4"
-                ></i>
-                <h3>Tourist Taxi</h3>
-            </div>
-
-            <div class="bg-white p-6 rounded-xl shadow text-center">
-                <i
-                    class="fa-solid fa-building text-3xl text-yellow-500 mb-4"
-                ></i>
-                <h3>Corporate Taxi</h3>
-            </div>
+            @foreach ($services as $service)
+                <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg text-center">
+                    <img src="{{ asset('Uploads/Services/' . $service->image) }}" alt="{{ $service->name }}" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="font-semibold">{{ $service->name }}</h3>
+                    <p>{{ $service->description }}</p>
+                    <a href="{{ route('booking') }}" class="bg-yellow-500 text-white px-4 py-2 rounded-lg inline-block mt-4">Book Now</a>
+                </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -122,17 +58,17 @@
     <div class="max-w-7xl mx-auto px-6">
         <h2 class="text-3xl font-bold text-center mb-12">Our Cabs</h2>
         <div class="grid md:grid-cols-3 gap-10">
+            @foreach ($cabs as $cab)
             <div class="bg-white rounded-xl shadow">
                 <img
-                    src="https://images.unsplash.com/photo-1503376780353-7e6692767b70"
+                    src="{{ asset('Uploads/Cabs/' . $cab->image) }}" alt="{{ $cab->name }}" class="w-full object-cover rounded-lg mb-4"
                 />
-
                 <div class="p-6">
-                    <h3 class="text-xl font-bold">Swift Dzire</h3>
-                    <p class="text-black">Sedan</p>
-                    <p class="text-gray-500">4 Seater</p>
+                    <h3 class="text-xl font-bold">{{ $cab->name }}</h3>
+                    <p class="text-black">{{ $cab->type }}</p>
+                    <p class="text-gray-500">{{ $cab->seats }} Seater</p>
                     <p class="text-lg font-bold text-yellow-500">
-                        Starting at 12/KM
+                        Starting at {{ $cab->price }}/KM
                     </p>
                     <a
                         href="{{ route('booking') }}"
@@ -142,48 +78,7 @@
                     </a>
                 </div>
             </div>
-
-            <div class="bg-white rounded-xl shadow">
-                <img
-                    src="https://images.unsplash.com/photo-1503376780353-7e6692767b70"
-                />
-
-                <div class="p-6">
-                    <h3 class="text-xl font-bold">Honda Amaze</h3>
-                    <p class="text-black">Sedan</p>
-                    <p class="text-gray-500">4 Seater • AC</p>
-                    <p class="text-lg font-bold text-yellow-500">
-                        Starting at 12/KM
-                    </p>
-                    <a
-                        href="{{ route('booking') }}"
-                        class="bg-yellow-500 text-white px-4 py-2 rounded-lg inline-block mt-4"
-                    >
-                        Book Now
-                    </a>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-xl shadow">
-                <img
-                    src="https://images.unsplash.com/photo-1503376780353-7e6692767b70"
-                />
-
-                <div class="p-6">
-                    <h3 class="text-xl font-bold">Suzuki Ertiga</h3>
-                    <p class="text-black">SUV</p>
-                    <p class="text-gray-500">7 Seater</p>
-                    <p class="text-lg font-bold text-yellow-500">
-                        Starting at 15/KM
-                    </p>
-                    <a
-                        href="{{ route('booking') }}"
-                        class="bg-yellow-500 text-white px-4 py-2 rounded-lg inline-block mt-4"
-                    >
-                        Book Now
-                    </a>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -196,61 +91,13 @@
             Tulsi Cabs in Jamnagar.
         </p>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            @foreach ($galleries as $gallery)
             <div class="overflow-hidden rounded-xl">
                 <img
-                    src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c"
-                    class="w-full h-60 object-cover hover:scale-110 transition duration-500"
+                    src="{{ asset('Uploads/Gallery/' . $gallery->image) }}" alt="{{ $gallery->name }}" class="w-full h-60 object-cover hover:scale-110 transition duration-500"
                 />
             </div>
-
-            <div class="overflow-hidden rounded-xl">
-                <img
-                    src="https://images.unsplash.com/photo-1503376780353-7e6692767b70"
-                    class="w-full h-60 object-cover hover:scale-110 transition duration-500"
-                />
-            </div>
-
-            <div class="overflow-hidden rounded-xl">
-                <img
-                    src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7"
-                    class="w-full h-60 object-cover hover:scale-110 transition duration-500"
-                />
-            </div>
-
-            <div class="overflow-hidden rounded-xl">
-                <img
-                    src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7"
-                    class="w-full h-60 object-cover hover:scale-110 transition duration-500"
-                />
-            </div>
-
-            <div class="overflow-hidden rounded-xl">
-                <img
-                    src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d"
-                    class="w-full h-60 object-cover hover:scale-110 transition duration-500"
-                />
-            </div>
-
-            <div class="overflow-hidden rounded-xl">
-                <img
-                    src="https://images.unsplash.com/photo-1485291571150-772bcfc10da5"
-                    class="w-full h-60 object-cover hover:scale-110 transition duration-500"
-                />
-            </div>
-
-            <div class="overflow-hidden rounded-xl">
-                <img
-                    src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c"
-                    class="w-full h-60 object-cover hover:scale-110 transition duration-500"
-                />
-            </div>
-
-            <div class="overflow-hidden rounded-xl">
-                <img
-                    src="https://images.unsplash.com/photo-1504215680853-026ed2a45def"
-                    class="w-full h-60 object-cover hover:scale-110 transition duration-500"
-                />
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
