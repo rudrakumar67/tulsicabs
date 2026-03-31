@@ -37,7 +37,7 @@
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ route('admin.booking.index') }}" aria-expanded="false">
-                <iconify-icon icon="solar:wheel-angle-bold-duotone"></iconify-icon>
+                <iconify-icon icon="solar:calendar-outline"></iconify-icon>
                 <span class="hide-menu">Booking Enquiry</span>
               </a>
             </li>
